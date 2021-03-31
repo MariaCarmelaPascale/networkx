@@ -73,11 +73,13 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
     if depth_limit is None:
         depth_limit = len(G)
     queue = deque([(source, depth_limit, neighbors(source))])
+    print(source)
     while queue:
         parent, depth_now, children = queue[0]
         try:
             child = next(children)
             if child not in visited:
+                print(child)
                 yield parent, child
                 visited.add(child)
                 if depth_now > 1:
@@ -289,7 +291,7 @@ def bfs_predecessors(G, source, depth_limit=None, sort_neighbors=None):
     edge_bfs
     """
     for s, t in bfs_edges(
-        G, source, depth_limit=depth_limit, sort_neighbors=sort_neighbors
+            G, source, depth_limit=depth_limit, sort_neighbors=sort_neighbors
     ):
         yield (t, s)
 
@@ -355,7 +357,7 @@ def bfs_successors(G, source, depth_limit=None, sort_neighbors=None):
     parent = source
     children = []
     for p, c in bfs_edges(
-        G, source, depth_limit=depth_limit, sort_neighbors=sort_neighbors
+            G, source, depth_limit=depth_limit, sort_neighbors=sort_neighbors
     ):
         if p == parent:
             children.append(c)
@@ -405,3 +407,19 @@ def descendants_at_distance(G, source, distance):
         queue = next_vertices
 
     return set()
+
+
+def main():
+    g = nx.Graph()
+
+    g.add_edge('A', 'B')
+    g.add_edge('A', 'C')
+    g.add_edge('D', 'B')
+    g.add_edge('E', 'B')
+    g.add_edge('C', 'F')
+    g.add_edge('C', 'G')
+    print(list(nx.bfs_edges(g, source='A')))
+
+
+if __name__ == '__main__':
+    main()
