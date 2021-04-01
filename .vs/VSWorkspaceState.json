@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\networkx",
+    "\\networkx\\algorithms",
+    "\\networkx\\algorithms\\traversal"
+  ],
+  "SelectedNode": "\\networkx\\algorithms\\traversal\\breadth_first_search.py",
+  "PreviewInSolutionExplorer": false
+}
